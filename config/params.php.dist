@@ -1,0 +1,5 @@
+<?php
+
+$app['mongodb.server'] = 'mongodb://127.0.0.1:27017';
+$app['mongodb.name'] = 'testdb';
+$app['mongodb.name.test'] = 'testdb-test';

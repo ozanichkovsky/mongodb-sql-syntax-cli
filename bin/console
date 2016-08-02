@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+$app = require_once dirname(__DIR__) ."../app/app.php";
+require_once dirname(__DIR__) ."../config/params.php";
+require_once dirname(__DIR__) ."../app/services.php";
+
+$console = &$app["console"];
+$command = new \MongoSql\Command\MongoSqlCommand();
+$console->add($command);
+$console->setDefaultCommand($command->getName());
+$console->run();

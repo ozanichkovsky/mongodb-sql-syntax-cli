@@ -1,1 +1,5 @@
 /.idea/
+/vendor/
+/config/params.php
+/app/logs/*
+!app/logs/.gitkeep
