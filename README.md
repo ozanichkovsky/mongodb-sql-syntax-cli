@@ -63,8 +63,8 @@ Code is being tested automatically in both PHP 5.6 and PHP 7.0 using GitLab CI. 
 
 Some builds are faild there because it was the first time because of some problems with configuration.
 
-GitLab CI uses *Docker* to run tests for both PHP 5.6 and PHP 7.0. It is a bit slow because basic php is used and all the
-extensions are installed during each build. Should be faster with custom mongodb specific image is used.
+GitLab CI uses *Docker* to run tests for both PHP 5.6 and PHP 7.0. It is a bit slow because basic php image is used and all the
+extensions are installed during each build. Should be faster if custom built mongodb specific image is used.
 
 ### Code ###
 
