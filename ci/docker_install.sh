@@ -13,6 +13,9 @@ apt-get install git -yqq
 apt-get install libssl-dev -yqq
 pecl install mongodb && docker-php-ext-enable mongodb
 
+# Install xdebug
+pecl install memcached  && docker-php-ext-enable memcached
+
 #install composer
 apt-get install curl -yqq && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
