@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "29685a8a0d4ae4a665d36e7040715309",
-    "content-hash": "ffac1d7189b099fc322489c0ec1b6aa5",
+    "hash": "68aba6cded276995a44db2ecd8ddbe09",
+    "content-hash": "f5056d4c28dc466f9402070f8b9a22ff",
     "packages": [
         {
             "name": "greenlion/php-sql-parser",
@@ -93,7 +93,7 @@
             ],
             "authors": [
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 }
             ],
@@ -2421,7 +2421,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=5.6.0"
     },
     "platform-dev": []
 }
