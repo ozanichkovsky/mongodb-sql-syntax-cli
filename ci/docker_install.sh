@@ -14,7 +14,7 @@ apt-get install libssl-dev -yqq
 pecl install mongodb && docker-php-ext-enable mongodb
 
 # Install xdebug
-pecl install memcached  && docker-php-ext-enable memcached
+pecl install xdebug  && docker-php-ext-enable xdebug
 
 #install composer
 apt-get install curl -yqq && \
