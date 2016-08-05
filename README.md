@@ -20,7 +20,7 @@ Only SELECT clause is available.
 4. Run composer install in the root folder, to install all needed dependencies.
 5. mongodb extension is required. Composer will fail to install dependencies without it,
 6. All test are in ./tests folder. For running tests you should use phpunit (https://phpunit.de)
-> php vendo/bin/phpunit
+> php vendor/bin/phpunit
 
 ### Usage ###
 
