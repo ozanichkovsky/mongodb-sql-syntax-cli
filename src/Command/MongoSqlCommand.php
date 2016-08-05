@@ -3,11 +3,33 @@
 namespace MongoSql\Command;
 
 use Knp\Command\Command;
+use MongoSql\MongoSqlException;
+use Monolog\Logger;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use MongoSql\Service\MongoRunnerService;
+use MongoSql\Service\SqlToMongoService;
 
 class MongoSqlCommand extends Command {
+
+    /**
+     * @var SqlToMongoService
+     */
+    private $sqlService;
+
+    /**
+     * @var MongoRunnerService
+     */
+    private $runnerService;
+
+    private $logger;
+
+    public function setServices(SqlToMongoService $sqlService, MongoRunnerService $runnerService, Logger $logger) {
+        $this->sqlService = $sqlService;
+        $this->runnerService = $runnerService;
+        $this->logger = $logger;
+    }
 
     protected function configure() {
         $this
@@ -24,7 +46,22 @@ class MongoSqlCommand extends Command {
 
             $query = $helper->ask($input, $output, $question);
 
-        } while (trim($query) != 'exit');
+            try {
+                $params = $this->sqlService->parse($query);
+
+                $result = $this->runnerService->execute($params);
+
+                // Show result
+                foreach ($result as $value) {
+                    print_r($value);
+                }
+            } catch (MongoSqlException $ex) {
+                $this->monolog->error($ex->getMessage());
+                echo("Error: " . $ex->getMessage() . "\n");
+            } catch (Exception $ex) {
+                $this->monolog->critical($ex->getMessage());
+            }
+        } while (trim(strtolower($query)) != 'exit');
     }
 
 }

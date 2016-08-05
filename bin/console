@@ -9,6 +9,7 @@ require_once dirname(__DIR__) ."../app/services.php";
 
 $console = &$app["console"];
 $command = new \MongoSql\Command\MongoSqlCommand();
+$command->setServices($app['sqlToMongoService'], $app['mongoRunnerService']);
 $console->add($command);
 $console->setDefaultCommand($command->getName());
 $console->run();
