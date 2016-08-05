@@ -3,13 +3,13 @@
 
 set_time_limit(0);
 
-$app = require_once dirname(__DIR__) ."/../app/app.php";
-require_once dirname(__DIR__) ."/../config/params.php";
-require_once dirname(__DIR__) ."/../app/services.php";
+$app = require __DIR__ . '/../app/app.php';
+require_once __DIR__ . '/../config/params.php';
+require_once __DIR__ . '/../app/services.php';
 
 $console = &$app["console"];
 $command = new \MongoSql\Command\MongoSqlCommand();
-$command->setServices($app['sqlToMongoService'], $app['mongoRunnerService']);
+$command->setServices($app['sqlToMongoService'], $app['mongoRunnerService'], $app['monolog']);
 $console->add($command);
 $console->setDefaultCommand($command->getName());
 $console->run();

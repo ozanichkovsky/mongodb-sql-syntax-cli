@@ -60,10 +60,13 @@ class MongoSqlCommand extends Command {
     {
         $helper = $this->getHelper('question');
 
-        do {
+        while (true) {
             $question = new Question("Enter SQL. Type 'exit' to quit:\n");
 
             $query = $helper->ask($input, $output, $question);
+
+            if (trim(strtolower($query)) == 'exit')
+                break;
 
             try {
                 $params = $this->sqlService->parse($query);
@@ -72,14 +75,17 @@ class MongoSqlCommand extends Command {
 
                 // Show result
                 foreach ($result as $value) {
+                    ob_start();
                     print_r($value);
+                    $printResult = ob_get_clean();
+                    $output->write($printResult);
                 }
             } catch (MongoSqlException $ex) {
-                $this->monolog->error($ex->getMessage());
-                echo("Error: " . $ex->getMessage() . "\n");
-            } catch (Exception $ex) {
-                $this->monolog->critical($ex->getMessage());
+                $this->logger->error($ex->getMessage());
+                $output->writeln('Error: ' . $ex->getMessage() . "\n");
+            } catch (\Exception $ex) {
+                $this->logger->critical($ex->getMessage());
             }
-        } while (trim(strtolower($query)) != 'exit');
+        }
     }
 }
