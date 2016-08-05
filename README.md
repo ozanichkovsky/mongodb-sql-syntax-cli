@@ -63,6 +63,13 @@ Code is being tested automatically in both PHP 5.6 and PHP 7.0 using GitLab CI. 
 
 Some builds are faild there because it was the first time because of some problems with configuration.
 
+GitLab CI uses *Docker* to run tests for both PHP 5.6 and PHP 7.0. It is a bit slow because basic php is used and all the
+extensions are installed during each build. Should be faster with custom mongodb specific image is used.
+
 ### Code ###
 
 To make code testable it is decoupled as much as possible. So Dependency Injection is used to instantiate and set all dependencies. Check *app/services.php*
+
+### Testing ###
+
+All *.php fileds are unit tested in src/ directory except Command\MongjSqlCommand which is quite difficult to test because of need to mock a lot of services.
