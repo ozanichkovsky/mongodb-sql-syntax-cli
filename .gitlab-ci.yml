@@ -11,7 +11,7 @@ test:5.6:
       - coverage/
   script:
   - composer install
-  - vendor/bin/phpunit --coverage-html coverage
+  - vendor/bin/phpunit --coverage-html coverage --coverage-text --colors=never
 
 # We test PHP7.0
 test:7.0:
@@ -21,4 +21,4 @@ test:7.0:
       - coverage/
   script:
   - composer install
-  - vendor/bin/phpunit --coverage-html coverage
+  - vendor/bin/phpunit --coverage-html coverage --coverage-text --colors=never

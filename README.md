@@ -1,3 +1,5 @@
+[![build status](https://git.zophiatech.com/ozanichkovsky/mongodb-sql-syntax-cli/badges/master/build.svg)](https://git.zophiatech.com/ozanichkovsky/mongodb-sql-syntax-cli/commits/master)
+
 # README #
 
 ### Purpose of the code ###
