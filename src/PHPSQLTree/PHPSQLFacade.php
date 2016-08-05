@@ -122,9 +122,6 @@ class PHPSQLFacade implements ParserFacadeInterface {
         $sql = str_replace(' SKIP ', ' OFFSET ', $sql);
 
         $this->queryTree = $this->phpSqlParser->parse($sql);
-
-        if (!is_array($this->queryTree))
-            throw new MSE('Wrong SQL provided');
     }
 
     /**

@@ -68,4 +68,25 @@ class PHPSQLFacadeTest extends Base {
 
         $this->assertEquals('test', $this->phpSqlFacade->getSkip());
     }
+
+    /**
+     * @expectedException \MongoSql\MongoSqlException
+     */
+    public function testParseThrowsException() {
+        $sqlPhpParseMock = $this->createMock(PHPSQLParser::class);
+
+        $sqlPhpParseMock
+            ->expects($this->any())
+            ->method('parse')->willReturn(null);
+
+        $this->phpSqlFacade->setSqlParser($sqlPhpParseMock);
+        $this->phpSqlFacade->parse('select 1');
+
+        $this->parserInterfaceMock = $this->createMock(ParserInterface::class);
+        $this->parserInterfaceMock->expects($this->any())
+            ->method('parse')->willReturn('test');
+
+        $this->phpSqlFacade->setSkipParser($this->parserInterfaceMock);
+        $this->phpSqlFacade->getSkip();
+    }
 }
