@@ -4,6 +4,8 @@
 
 This repository contains SQL compatible Mongodb client.
 
+The code is **100% covered** with tests.
+
 Only SELECT clause is available.
 
 ### Requirements ###
@@ -72,4 +74,4 @@ To make code testable it is decoupled as much as possible. So Dependency Injecti
 
 ### Testing ###
 
-All *.php fileds are unit tested in src/ directory except Command\MongjSqlCommand which is quite difficult to test because of need to mock a lot of services.
+All *.php files are unit tested in src/ directory. Coverage is 100%.
