@@ -1,14 +1,13 @@
 before_script:
   # Install dependencies
   - bash ci/docker_install.sh > /dev/null
+  - cp config/params.php.dist config/params.php
 
 # We test PHP5.6
 test:5.6:
   image: php:5.6
   artifacts:
     untracked: true
-  before_script:
-    - cp config/params.php.dist config/params.php
   script:
   - composer install
   - vendor/bin/phpunit --coverage-html coverage
@@ -18,8 +17,6 @@ test:7.0:
   image: php:7.0
   artifacts:
     untracked: true
-  before_script:
-      - cp config/params.php.dist config/params.php
   script:
   - composer install
   - vendor/bin/phpunit --coverage-html coverage
