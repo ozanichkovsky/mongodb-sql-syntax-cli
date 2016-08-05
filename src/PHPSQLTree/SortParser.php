@@ -4,6 +4,12 @@ namespace MongoSql\PHPSQLTree;
 
 class SortParser extends AbstractParser{
 
+    /**
+     * Parse SQL tree and get sort array or null if sorting is not needed
+     *
+     * @param array $sqlTree
+     * @return array|null
+     */
     public function parse(array &$sqlTree) {
         $orderPart = $this->getTreePart($sqlTree, 'ORDER', false);
 

@@ -4,6 +4,9 @@ namespace MongoSql\PHPSQLTree;
 
 class QueryParser extends AbstractParser {
 
+    /**
+     * Operator precendence. Higher number has higher priority
+     */
     const precedence = [
         'OR' => 1,
         'XOR' => 2,
@@ -17,6 +20,9 @@ class QueryParser extends AbstractParser {
         '!=' => 4,
     ];
 
+    /**
+     * Map of SQL comparison operators to MongoDB operators
+     */
     const comparisonOperators = [
         '=' => '$eq',
         '>' => '$gt',
@@ -27,12 +33,21 @@ class QueryParser extends AbstractParser {
         '!=' => '$ne'
     ];
 
+    /**
+     * Logical operators
+     */
     const logicalOperators = [
         'NOT' => '$not',
         'AND' => '$and',
         'OR' => '$or'
     ];
 
+    /**
+     * Parse SQL AST tree and return query array
+     *
+     * @param array $sqlTree
+     * @return array
+     */
     public function parse(array &$sqlTree) {
         $wherePart = $this->getTreePart($sqlTree, 'WHERE', false);
 
@@ -42,6 +57,13 @@ class QueryParser extends AbstractParser {
         return $this->compute($wherePart);
     }
 
+    /**
+     * Recursive descent parsing of the SQL tree
+     *
+     * @param array $whereTree
+     * @param int $minPrecedence
+     * @return array|float|int|string
+     */
     private function compute(array &$whereTree, $minPrecedence = 1) {
         $atomLhs = $this->getAtom($whereTree);
 
@@ -66,6 +88,14 @@ class QueryParser extends AbstractParser {
         return $atomLhs;
     }
 
+    /**
+     * Compute operator expression
+     *
+     * @param $op Operator
+     * @param $atomLhs - left expression
+     * @param $atomRhs - right expression
+     * @return array
+     */
     private function computeOp($op, $atomLhs, $atomRhs) {
         switch ($op) {
             case '=':
@@ -111,6 +141,12 @@ class QueryParser extends AbstractParser {
         return $result;
     }
 
+    /**
+     * Get field, const or bracker expression
+     *
+     * @param array $whereTree
+     * @return array|float|int|string
+     */
     private function getAtom(array &$whereTree) {
         $current = current($whereTree);
 

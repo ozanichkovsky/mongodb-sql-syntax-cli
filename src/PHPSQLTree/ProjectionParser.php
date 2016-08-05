@@ -4,6 +4,13 @@ namespace MongoSql\PHPSQLTree;
 
 class ProjectionParser extends AbstractParser{
 
+    /**
+     * Parse SQL tree and get array of projections.
+     * Or null if 'SELECT *' was used
+     *
+     * @param array $sqlTree
+     * @return array|null
+     */
     public function parse(array &$sqlTree) {
         $selectPart = $this->getTreePart($sqlTree, 'SELECT');
 

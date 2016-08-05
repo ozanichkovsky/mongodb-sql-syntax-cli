@@ -23,20 +23,39 @@ class MongoSqlCommand extends Command {
      */
     private $runnerService;
 
+    /**
+     * @var Logger
+     */
     private $logger;
 
+    /**
+     * Set Command services
+     *
+     * @param SqlToMongoService $sqlService
+     * @param MongoRunnerService $runnerService
+     * @param Logger $logger
+     */
     public function setServices(SqlToMongoService $sqlService, MongoRunnerService $runnerService, Logger $logger) {
         $this->sqlService = $sqlService;
         $this->runnerService = $runnerService;
         $this->logger = $logger;
     }
 
+    /**
+     * Configure command
+     */
     protected function configure() {
         $this
             ->setName('mongo:sql')
             ->setDescription('Execute MongoDB query using simple SQL syntax. Type word \'exit\' to quit console.');
     }
 
+    /**
+     * Execute command
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
@@ -63,5 +82,4 @@ class MongoSqlCommand extends Command {
             }
         } while (trim(strtolower($query)) != 'exit');
     }
-
 }

@@ -4,14 +4,31 @@ namespace MongoSql\Service;
 
 use MongoSql\Parser\ParserFacadeInterface;
 
+/**
+ * Class SqlToMongoService
+ * @package MongoSql\Service
+ */
 class SqlToMongoService {
 
+    /**
+     * @var ParserFacadeInterface
+     */
     private $parserFacade;
 
+    /**
+     * SqlToMongoService constructor.
+     * @param ParserFacadeInterface $parserFacade
+     */
     public function __construct(ParserFacadeInterface $parserFacade) {
         $this->parserFacade = $parserFacade;
     }
 
+    /**
+     * Parse SQL and get array accepted by @see MongoRunnerService
+     *
+     * @param $sql
+     * @return array
+     */
     public function parse($sql) {
         $parser = $this->parserFacade;
 
