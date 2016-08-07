@@ -16,7 +16,7 @@ class PHPSQLFacadeTest extends Base {
      */
     private $phpSqlFacade;
 
-    public function setUp() {
+    protected function setUp() {
         $this->phpSqlFacade = new PHPSQLFacade();
 
         $sqlPhpParseMock = $this->createMock(PHPSQLParser::class);

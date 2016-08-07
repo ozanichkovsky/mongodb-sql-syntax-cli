@@ -23,7 +23,7 @@ class MongoSqlCommandTest extends Base {
 
     private $askHelper;
 
-    public function setUp() {
+    protected function setUp() {
         $this->askHelper = $this->createMock(QuestionHelper::class);
         $this->askHelper
             ->expects($this->any())
