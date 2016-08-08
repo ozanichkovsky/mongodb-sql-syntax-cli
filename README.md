@@ -63,7 +63,7 @@ Operator precedence is taken into account so **AND** has higher priority then **
 
 ### CI ###
 
-Code is being tested automatically in both PHP 5.6 and PHP 7.0 using GitLab CI. Check [Pipelines](https://git.zophiatech.com/ozanichkovsky/mongodb-sql-syntax-cli/pipelines) to see builds
+Code is being tested automatically in both PHP 5.6 and PHP 7.0 using GitLab CI.
 
 Some builds are faild there because it was the first time because of some problems with configuration.
 
